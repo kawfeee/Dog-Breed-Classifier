@@ -1,0 +1,91 @@
+DBMS Lab 5 - MongoDB
+
+=====================================================================
+
+- Open MongoDB App
+- Create New Connection 
+- Create Database in your Connection 
+- Run these codes in MongoDB Shell
+
+=====================================================================
+
+use CAR_DATABASE
+
+1. Create (Insert) Operation:
+
+db.cars.insertOne(
+{ 
+     regNo: "KA01AB1234",
+    brand: "Toyota",
+    model: "Innova",
+    year: 2020,
+    color: "Silver",
+    owner: "Ray"
+  
+}
+);
+
+db.cars.insertMany([
+  {
+    regNo: "KA05CD5678",
+    brand: "Hyundai",
+    model: "Creta",
+    year: 2021,
+    color: "Black",
+    owner: "Alex"
+  },
+  {
+    regNo: "KA53MA8385",
+    brand: "MARUTI SUZUKI",
+    model: "Ertika",
+    year: 2013,
+    color: "Gray ",
+    owner: "Sam"
+  }
+]);
+
+====================================================================
+
+2. Read (Retrieve) Operation:
+
+// Retrieve all documents
+db.collection.find();
+
+// Retrieve documents with a specific condition
+db.collection.find({ brand: “Toyota" });
+
+// Limit the number of documents returned
+db.collection.find().limit(5);
+
+====================================================================
+
+3. Update Operation:
+
+// Update color of a car
+db.cars.updateOne(
+  { regNo: "KA01AB1234" },
+  { $set: { color: "White" } }
+);
+
+// Update multiple cars:
+db.cars.updateMany(
+  { brand: "Toyota" },
+  { $set: { warranty: true } }
+);
+
+
+====================================================================
+
+4. Delete Operation:
+
+// Delete one:
+db.cars.deleteOne({ regNo: "KA05CD5678" });
+
+// Delete all cars older than 2019:
+db.cars.deleteMany({ year: { $lt: 2019 } });
+
+======================================================================
+
+
+
+
